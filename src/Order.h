@@ -7,16 +7,17 @@
 
 
 #include <map>
-#include "Limit.h"
+#include <corecrt.h>
 
 class Order {
-private:
+public:
+    Order(int idNumber, bool buyOrSell, int shares, int limit, int eventTime);
     int idNumber;
     bool buyOrSell;
     int shares;
     int limit;
-    int entryTime;
-    int eventTime;
+    time_t entryTime;
+    time_t eventTime;
     int parentLimit;
 };
 
