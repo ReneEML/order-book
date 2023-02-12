@@ -8,9 +8,8 @@ TEST(LimitTest, TestInitialization) {
     assert(testLimit.totalVolume == 0);
 }
 
-
 TEST(LimitTest, TestSize) {
-    Order order(69, true, 69, 69, 69);
+    Order order(69, Order::BUY, 69, 69, 69);
     Limit testLimit(69);
     testLimit.addOrder(&order);
     testLimit.addOrder(&order);
@@ -18,8 +17,8 @@ TEST(LimitTest, TestSize) {
 }
 
 TEST(LimitTest, TestPeekFront) {
-    Order order(69, true, 69, 69, 69);
-    Order order2(69, true, 69, 69, 69);
+    Order order(69, Order::BUY, 69, 69, 69);
+    Order order2(69, Order::BUY, 69, 69, 69);
     Limit testLimit(69);
     testLimit.addOrder(&order);
     testLimit.addOrder(&order2);
@@ -28,8 +27,8 @@ TEST(LimitTest, TestPeekFront) {
 }
 
 TEST(LimitTest, TestPopFront) {
-    Order order(69, true, 69, 69, 69);
-    Order order2(69, true, 69, 69, 69);
+    Order order(69, Order::BUY, 69, 69, 69);
+    Order order2(69, Order::SELL, 69, 69, 69);
     Limit testLimit(69);
     testLimit.addOrder(&order);
     testLimit.addOrder(&order2);
@@ -40,9 +39,9 @@ TEST(LimitTest, TestPopFront) {
 }
 
 TEST(LimitTest, TestRemoveOrder) {
-    Order order(69, true, 69, 69, 69);
-    Order order2(68, true, 69, 69, 69);
-    Order order3(67, true, 69, 69, 69);
+    Order order(69, Order::BUY, 69, 69, 69);
+    Order order2(68, Order::SELL, 69, 69, 69);
+    Order order3(67, Order::BUY, 69, 69, 69);
     Limit testLimit(69);
     auto it = testLimit.addOrder(&order);
     auto it2 = testLimit.addOrder(&order2);

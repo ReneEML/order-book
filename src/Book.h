@@ -10,22 +10,21 @@
 #include <unordered_map>
 #include "Limit.h"
 
+
+
 class Book {
 public:
-    Book();
-
-    void addOrder(int id_number, bool buyOrSell, int shares, int limit, int eventTime);
-
-
-private:
+    void addOrder(int id_number, Order::OrderType orderType, int shares, int limit, int eventTime);
     std::map<int, Limit*> buyTree;
     std::map<int, Limit*> sellTree;
     std::map<int, Limit*>::iterator lowestSell;
     std::map<int, Limit*>::iterator highestBuy;
 
-    std::unordered_map<int, Order*> orders;
-    std::unordered_map<int, Limit*> limits;
+    std::unordered_map<int, std::list<Order*>::iterator> orders;
+    std::unordered_map<int, std::map<int, Limit*>::iterator> limits;
 
+    Limit *getLimit(int limit);
+    Limit *createLimit(int limit, Order::OrderType orderType);
 };
 
 

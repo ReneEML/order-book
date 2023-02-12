@@ -9,12 +9,11 @@ FetchContent_MakeAvailable(googletest)
 include(CTest)
 
 add_executable(
-        TestLimit
-        TestLimit.cpp)
+        Tests
+        TestLimit.cpp TestBook.cpp)
 target_link_libraries(
-        TestLimit
+        Tests
         GTest::gtest_main
         order_book
 )
 include(GoogleTest)
-add_test(LIMIT_TEST AllTestsInB COMMAND TestLimit)
