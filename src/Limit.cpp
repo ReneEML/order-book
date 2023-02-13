@@ -9,7 +9,7 @@ Limit::Limit(int limitPrice) {
     this->totalVolume = 0;
 }
 
-int Limit::getSize() {
+size_t Limit::getSize() const {
     return this->orders.size();
 }
 

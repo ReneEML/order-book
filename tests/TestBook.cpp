@@ -20,3 +20,21 @@ TEST(TestBook, TestAddOrder) {
     }
     assert(book.orders.size() == 10);
 }
+
+TEST(TestBook, TestCancelOrder) {
+    Book book;
+    book.addOrder(1, Order::BUY, 69, 42, 1234);
+    book.addOrder(2, Order::BUY, 69, 69, 1234);
+    book.addOrder(3, Order::BUY, 69, 7, 1234);
+    book.cancelOrder(2);
+    assert(book.buyTree.size() == 2);
+    assert(book.highestBuy->second->limitPrice == 42);
+    book.cancelOrder(3);
+    assert(book.buyTree.size() == 1);
+    assert(book.highestBuy->second->limitPrice == 42);
+    book.cancelOrder(1);
+    assert(book.buyTree.size() == 0);
+    assert(book.highestBuy == book.buyTree.end());
+    assert(book.cancelOrder(69) == false);
+}
+

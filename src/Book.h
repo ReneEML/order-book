@@ -15,16 +15,28 @@
 class Book {
 public:
     void addOrder(int id_number, Order::OrderType orderType, int shares, int limit, int eventTime);
+
     std::map<int, Limit*> buyTree;
     std::map<int, Limit*> sellTree;
-    std::map<int, Limit*>::iterator lowestSell;
-    std::map<int, Limit*>::iterator highestBuy;
+    std::map<int, Limit*>::iterator lowestSell = sellTree.end();
+    std::map<int, Limit*>::iterator highestBuy = sellTree.end();
 
     std::unordered_map<int, std::list<Order*>::iterator> orders;
     std::unordered_map<int, std::map<int, Limit*>::iterator> limits;
 
     Limit *getLimit(int limit);
-    Limit *createLimit(int limit, Order::OrderType orderType);
+
+    void createBuyLimit(int limit, Limit *limitObj);
+
+    void createSellLimit(int limit, Limit *limitObj);
+
+    bool cancelOrder(int idNumber);
+
+    void removeFromBuyTree(std::map<int, Limit*>::iterator it);
+
+    void removeFromSellTree(std::map<int, Limit *>::iterator it);
+
+    void removeFromTree(std::map<int, Limit *>::iterator it, Order::OrderType orderType);
 };
 
 
