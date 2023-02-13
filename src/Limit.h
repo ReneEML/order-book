@@ -12,9 +12,9 @@
 class Limit {
 public:
 
-    Limit(int limitPrice);
+    explicit Limit(int limitPrice);
 
-    int getSize();
+    [[nodiscard]] size_t getSize() const;
 
     int limitPrice;
     int totalVolume;
